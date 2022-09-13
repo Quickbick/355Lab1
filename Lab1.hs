@@ -23,7 +23,10 @@ insertEvery n item iL = insertHelper n item iL n
                                        | otherwise = i:(insertHelper (n - 1) item iL m)
 
 -- 3. getSales
-
+getSales :: (Num p, Eq t) => t -> [(t, p)] -> p
+getSales day [] = 0
+getSales day ((d, x):xs) | day == d = x + (getSales day xs)
+                         | otherwise = getSales day xs
                                                   
 -- 4. sumSales
 
