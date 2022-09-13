@@ -30,7 +30,9 @@ getSales day ((d, x):xs) | day == d = x + (getSales day xs)
                                                   
 -- 4. sumSales
 sumSales:: (Num p)=> String -> String -> [(String,[(String,p)])] -> p 
-sumSales store day ((s, (d, x):xs):xd) | store == s = getSales day ((d, x):xs)
+sumSales store day [] = 0
+sumSales store day ((s, []):xd) = sumSales store day xd
+sumSales store day ((s, (d, x):xs):xd) | store == s = (getSales day ((d, x):xs)) + (sumSales store day xd)
                                        | otherwise = sumSales store day xd
 
 -- 5. split
