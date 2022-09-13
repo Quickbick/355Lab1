@@ -35,11 +35,3 @@ sumSales store day ((s, []):xd) = sumSales store day xd
 sumSales store day ((s, (d, x):xs):xd) | store == s = (getSales day ((d, x):xs)) + (sumSales store day xd)
                                        | otherwise = sumSales store day xd
 
--- 5. split
-split :: Eq a => a -> [a] -> [[a]] 
-split c n [] = []
-split c 0 (x:xs) = xs
-split c n (x:xs) | c == x = [] : [(split c (n - 1) xs)]
-
--- 6. nSplit
-
